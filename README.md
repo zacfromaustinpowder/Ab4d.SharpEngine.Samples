@@ -14,7 +14,7 @@ The following features are supported by the current version:
 - Render line caps (arrows, etc.), line with pattern, poly-lines with mitter or bevel connections, hidden lines
 - Object instancing (InstancedMeshNode)
 - Cameras: TargetPositionCamera, FirstPersonCamera, FreeCamera, MatrixCamera
-- Camera controllers with rotate around mouse position, zoom to position and other advanced functions
+- Camera controllers with rotate around the mouse position, zoom to position and other advanced functions
 - Lights: AmbientLight, DirectionalLight, PointLight, SpotLight, CameraLight
 - Effects: StandardEffect, SolidColorEffect, VertexColorEffect, ThickLineEffect
 - Improved visual quality with super-sampling and multi-sampling
@@ -26,8 +26,8 @@ The following features are supported by the current version:
 
 Ab4d.SharpEngine library is a **commercial library** but it is also **free for non-commercial open-source projects**.
 
-The commercial license can be purchase from [purchase web page](https://www.ab4d.com/Purchase.aspx). With a commercial license, you also get priority email support and other benefits (feature requests, online support on your projects with sharing screen, etc.).
-To get a trial license for your own projects (not needed for the sample projects in this repo) or to apply for the free open-source lincese, see the [ab4d.com/trial](https://www.ab4d.com/trial).
+The commercial license can be purchased from [purchase web page](https://www.ab4d.com/Purchase.aspx). With a commercial license, you also get priority email support and other benefits (feature requests, online support on your projects with sharing screen, etc.).
+To get a trial license for your own projects (not needed for the sample projects in this repo) or to apply for the free open-source license, see the [ab4d.com/trial](https://www.ab4d.com/trial).
 
 ### Platforms and UI frameworks:
 
@@ -55,11 +55,11 @@ To get a trial license for your own projects (not needed for the sample projects
   - MAUI
   
 **macOS:**
-  - Using AvaloniaUI with SharpEngineSceneView control (Ab4d.SharpEngine.AvaloniaUI library). Requires MoltenVK library - see special project for macos.
-  - Using MAUI - requires MoltenVK library - see Building for macOS and iOS below.
+  - Using AvaloniaUI with SharpEngineSceneView control (Ab4d.SharpEngine.AvaloniaUI library). It requires the MoltenVK library. See "Building for macOS and iOS" below.
+  - Using MAUI - requires MoltenVK library - see "Building for macOS and iOS" below.
    
 **iOS:**
-  - AvaloniaUI with SharpEngineSceneView control (Ab4d.SharpEngine.AvaloniaUI library). Requires MoltenVK library - see Building for macOS and iOS below.
+  - AvaloniaUI with SharpEngineSceneView control (Ab4d.SharpEngine.AvaloniaUI library). It requires the MoltenVK library. See "Building for macOS and iOS" below.
   - Using MAUI - requires MoltenVK library - see "Building for macOS and iOS" below.
 
 
@@ -83,7 +83,7 @@ Online help:
 
 
 ### System requirements to open the sample projects:
-- Visual Studio 2022 on Windows (VS 2019 does not support .Net 6)
+- Visual Studio 2022 on Windows
 - Rider from JetBrains on Windows, Linux and macOS
 - Visual Studio Code on Windows, Linux and macOS
 
@@ -98,7 +98,7 @@ The following Visual Studio solutions are available:
   This sample uses Ab4d.SharpEngine.AvaloniaUI library that provides SharpEngineSceneView control.
   The SharpEngineSceneView provides an Avalonia control that is very easy to use and can 
   compose the 3D scene with the Avalonia UI objects (for example, showing buttons on top of the 3D scene).
-  The sample can be started on Windows, Linux and on macOS (use a special macOS solution).
+  The sample can be started on Windows, Linux, and macOS.
   See also "Building for macOS and iOS" section for more information on how to compile for macOS.
 
 - **Ab4d.SharpEngine.Samples.AvaloniaUI.VulkanBackend**\
@@ -112,7 +112,7 @@ The following Visual Studio solutions are available:
   This sample shows how to create an Avalonia app that can run on Windows, Android and iOS.
   This sample uses Ab4d.SharpEngine.AvaloniaUI library that provides SharpEngineSceneView control.
   Because Vulkan is not natively supported on macOS and iOS, the MoltenVK library is required to translate the Vulkan calls to Molten API calls.
-  See also "Building for macOS and iOS" section for more information on how to compile for isOS.
+  See also "Building for macOS and iOS" section for more information on how to compile for iOS.
   Note that folder and file names in this solution have been shortened to prevent problems with max path size on Windows (260 chars).
 
 - **Ab4d.SharpEngine.Samples.Wpf**\
@@ -146,12 +146,11 @@ The following Visual Studio solutions are available:
   This project can work on Windows and Linux.
 
 - **Ab4d.SharpEngine.Samples.Android.Application**\
-  This solution uses an Android.Application project template for .Net 6.
+  This solution uses an Android.Application project template for .Net.
   The 3D scene is shown on the part of the view that is defined by SurfaceView.
 
 - **Ab4d.SharpEngine.Samples.Maui**\
   This solution uses a NET Maui and can work on Windows, Android, macOS and iOS.
-  Compiling for Windows, Android and macOS requires .Net 8.
   Because Vulkan is not natively supported on macOS and iOS, the MoltenVK library is required to translate the Vulkan calls to Molten API calls.
   See "Building for macOS and iOS" section for more information on how to compile for macOS and iOS.
 
@@ -162,27 +161,27 @@ The following Visual Studio solutions are available:
   for details.
 
 - **Ab4d.SharpEngine.Samples.ImGui**
-  This solution shows how to render user interface that is defined by ImGui.
+  This solution shows how to render a user interface that is defined by ImGui.
   It includes the ImGuiRenderingStep class with full source code that shows how to render ImGui by using Ab4d.SharpEngine.
   The solution is using a third-party ImGui.NET library (https://github.com/ImGuiNET/ImGui.NET).
 
 
 ## Quick Start
 
-The main two objects in SharpEngine are:
-- Scene object that defines the 3D scene with a hierarchy of 3D objects that are added to the RootNode object.
+The two main objects in SharpEngine are:
+- **Scene** object that defines the 3D scene with a hierarchy of 3D objects that are added to the RootNode object.
   It also defines the Lights collection.
-- SceneView object is used to show the objects that are defined by the Scene object. SceneView also defines the Camera and provides the size of the view.
+- **SceneView** object is used to show the objects that are defined by the Scene object. SceneView also defines the Camera and provides the size of the view.
 
-When using WPF, Avalonia, WinUI or WinForms, then Scene and SceneView are created by the SharpEngineSceneView control.
+When using WPF, Avalonia, WinUI or WinForms, then Scene and SceneView are created by the **SharpEngineSceneView control**.
 
-3D objects are defined in the SceneNodes namespace, for example BoxModelNode, SphereModelNode, LineNode, MeshModelNode, etc.
+3D objects are defined in the SceneNodes namespace, for example: BoxModelNode, SphereModelNode, LineNode, MeshModelNode, etc.
 
 Common materials are defined by using StandardMaterial object. 
 For each color there are predefined StandardMaterials, for example StandardMaterials.Blue.
 
 Use ReaderObj to read 3D models from obj files.
-To read 3D models from other file formats, use AssimpImporter.
+To read 3D models from glTF files use Ab4d.SharpEngine.glTF libray. For other file formats, use AssimpImporter.
 
 
 
@@ -190,7 +189,7 @@ To read 3D models from other file formats, use AssimpImporter.
 
 Ab4d.SharpEngine is built on the same concepts as the Ab3d.PowerToys and Ab3d.DXEngine libraries. So users of those two libraries should feel very familiar. But there are some main differences:
 
-For WPF, Avalonia, WinUI and WinForms there is a special library ([Ab4d.SharpEngine.Wpf](https://www.nuget.org/packages/Ab4d.SharpEngine.Wpf), [Ab4d.SharpEngine.AvaloniaUI](https://www.nuget.org/packages/Ab4d.SharpEngine.AvaloniaUI), [Ab4d.SharpEngine.WinUI](https://www.nuget.org/packages/Ab4d.SharpEngine.WinUI), [Ab4d.SharpEngine.WinForms](https://www.nuget.org/packages/Ab4d.SharpEngine.WinForms)) that defines the `SharpEngineSceneView` class. This class hides the differences between those platforms under the hood and provides the same API for all platforms. The class also initializes the engine by creating the `VulkanDevice`. The main two properties that  `SharpEngineSceneView` provides are `Scene` and `SceneView`. The `Scene` is used to define the scene by adding the SceneNodes to the `Scene.RootNode` (similar as Viewport3D.Children in WPF) and adding lights to `Scene.Lights` collection. The `SceneView` defines the view of the scene and provides a camera that is set to the `SceneView.Camera` property. When working with `SharpEngineSceneView`, then **100% of the code** to show 3D graphics **can be the same for WPF, Avalonia, WinUI and WinForms**. Other platforms and UI frameworks require some special setup code that is different for each platform. But from there on, the code is the same regardless of the platform. See samples for more info.
+For WPF, Avalonia, WinUI and WinForms there is a special library ([Ab4d.SharpEngine.Wpf](https://www.nuget.org/packages/Ab4d.SharpEngine.Wpf), [Ab4d.SharpEngine.AvaloniaUI](https://www.nuget.org/packages/Ab4d.SharpEngine.AvaloniaUI), [Ab4d.SharpEngine.WinUI](https://www.nuget.org/packages/Ab4d.SharpEngine.WinUI), [Ab4d.SharpEngine.WinForms](https://www.nuget.org/packages/Ab4d.SharpEngine.WinForms)) that defines the `SharpEngineSceneView` class. This class hides the differences between those platforms under the hood and provides the same API for all platforms. The class also initializes the engine by creating the `VulkanDevice`. The two main properties that `SharpEngineSceneView` provides are `Scene` and `SceneView`. The `Scene` is used to define the scene by adding the SceneNodes to the `Scene.RootNode` (similar as Viewport3D.Children in WPF) and adding lights to `Scene.Lights` collection. The `SceneView` defines the view of the scene and provides a camera that is set to the `SceneView.Camera` property. When working with `SharpEngineSceneView`, then **100% of the code** to show 3D graphics **can be the same for WPF, Avalonia, WinUI and WinForms**. Other platforms and UI frameworks require some special setup code that is different for each platform. But from there on, the code is the same regardless of the platform. See samples for more info.
 
 Some other differences:
 
@@ -218,7 +217,7 @@ In my opinion, if you already have a complex application that is built by using 
 
 - Ab3d.DXEngine and Ab3d.PowerToys are very mature products that are tested and proven in the "field" by many customers.
 - Ab3d.DXEngine supports multi-threading and currently provides faster 3D rendering in many use cases.
-- Ab3d.DXEngine and Ab3d.PowerToys can run on older .Net versions including .Net framework 4.5+.
+- Ab3d.DXEngine and Ab3d.PowerToys can run on older .Net versions including .Net framework 4.8.
 
 Those two libraries provide more features and come with more samples that can be used as code templates for your needs.
 The following is a list of major features from Ab3d.DXEngine and Ab3d.PowerToys that are missing in Ab4d.SharpEngine (v3.0; this is not the full list):
@@ -231,7 +230,7 @@ The following is a list of major features from Ab3d.DXEngine and Ab3d.PowerToys 
 
 - Ab4d.SharpEngine can run on multiple platforms. You can start writing code for Windows and later simply add support for Linux, macOS, Android and iOS. Or port just a smaller part of the application to other platforms.
 - Ab4d.SharpEngine uses Vulkan API that is the most advanced graphics API that is actively developed and gets new features as new versions of graphics cards are released. This provides options to support all current and future graphics features (for example Ray tracing - not possible with DirectX 11).
-- Ab4d.SharpEngine was built from the ground up and therefore has a very clean and easy-to-use programming API. For example, there is only a single set of 3D models (SceneNodes, Camera, Lights). When using Ab3d.DXEngine and Ab3d.PowerToys, the API is not very nice in all the cases. The Ab3d.PowerToy was built on top of WPF 3D objects that are not very extendable so some compromises were needed (for example cameras are derived from FrameworkElement and not from Camera). Also, Ab3d.DXEngine converts all WPF 3D and Ab3d.PowerToys objects into its own objects so the application has 2 versions of each object. In other cases, some tricks must be used to provide Ab3d.DXEngine features to Ab3d.PowerToys and WPF 3D objects (for example using SetDXAttribute).
+- Ab4d.SharpEngine was built from the ground up and therefore has a very clean and easy-to-use programming API. For example, there is only a single set of 3D models (SceneNodes, Camera, Lights). When using Ab3d.DXEngine and Ab3d.PowerToys, the API is not very nice in all the cases. The Ab3d.PowerToy was built on top of WPF 3D objects that are not very extendable so some compromises were needed (for example, cameras are derived from FrameworkElement and not from Camera). Also, Ab3d.DXEngine converts all WPF 3D and Ab3d.PowerToys objects into its own objects so the application has 2 versions of each object. In other cases, some tricks must be used to provide Ab3d.DXEngine features to Ab3d.PowerToys and WPF 3D objects (for example using SetDXAttribute).
 - Working with WPF objects is very slow (accessing DependencyProperties has a lot of overhead). Also, Ab3d.DXEngine needs to convert all WPF objects into its own objects. Working with objects in Ab4d.SharpEngine is much faster.
 - Vulkan is a significantly faster graphics API than DirectX 11. Though the Ab4d.SharpEngine does not use all the fastest algorithms yet (no multi-threading), in the future the engine will be significantly faster than Ab3d.DXEngine.
 - Ab4d.SharpEngine is built on top of .NET 6 and that provides many performance benefits because of using System.Numerics, Span and other improved .NET features.
@@ -243,17 +242,39 @@ Ab3d.PowerToys and Ab3d.DXEngine will still be actively developed, will get new 
 
 
 ## Building for macOS and iOS
-  
+
+The following projects can be run on **macOS**:
+- Ab4d.SharpEngine.Samples.AvaloniaUI
+- Ab4d.SharpEngine.Samples.AvaloniaUI.CrossPlatform/Desktop
+- Ab4d.SharpEngine.Samples.Maui
+
+The following projects can be run on **iOS**:
+- Ab4d.SharpEngine.Samples.AvaloniaUI.CrossPlatform/iOS
+- Ab4d.SharpEngine.Samples.Maui
+ 
 The following changes are required to use Ab4d.SharpEngine on macOS and iOS:
-- .Net 8 is requried to use Ab4d.SharpEngine on iOS (because function pointers do not work with .Net 7 and previous .Net versions on iOS).
 
-- The 3D scene that is rendered by Ab4d.SharpEngine is shown by using SKCanvasView. To use that control, add a reference to SkiaSharp.Views.Maui.Controls NuGet package. The add ".UseSkiaSharp()" to the builder setup in the MauiProgram.cs file.
+- Add libMoltenVK.dylib from the Vulkan SDK to the project so that the library can be loaded at runtime. Note that there are different builds for iOS and for macOS / MacCatalyst.
 
-- Add libMoltenVK.dylib from the Vulkan SDK to the projects so that the library can be loaded at runtime. Note that there are different builds for iOS and for Catalyst (the latest use the version of macOS).
+- For MAUI apps, the 3D scene that is rendered by Ab4d.SharpEngine is shown by using SKCanvasView. To use that control, add a reference to SkiaSharp.Views.Maui.Controls NuGet package. Then add ".UseSkiaSharp()" to the builder setup in the MauiProgram.cs file.
+  
+- To run the app on iOS (not required for the iOS simulator), the application needs to have a provisioning profile set. One option is to follow the instructions on the following page: [Create a provisioning profile](https://learn.microsoft.com/en-us/dotnet/maui/ios/capabilities?view=net-maui-8.0&tabs=vs#create-a-provisioning-profile). Another option is to open the project in the Rider IDE, then right-click on the project and select "Open in Xcode". Rider will create the Xcode project file and open it in Xcode. There you can click on the project file and in the "Certificates, Identifiers & Profiles" tab create an ad-hoc provisioning profile (allow having up to 3 development apps installed at the same time). See more: [Create a development provisioning profile](https://developer.apple.com/help/account/manage-profiles/create-a-development-provisioning-profile/). Note that to create the provisioning profile, the ApplicationId (in csproj file) needs to be in the form of "com.companyName.appName" - this is then used as a Bundle Id.
 
-- To run the app in iOS, the application needs to have a provisioning profile set. One option is to follow the instructions on the following page: [Create a provisioning profile](https://learn.microsoft.com/en-us/dotnet/maui/ios/capabilities?view=net-maui-8.0&tabs=vs#create-a-provisioning-profile). Another option is to open the project in the Rider IDE, then right-click on the project and select "Open in Xcode". Rider will create the Xcode project file and open it in Xcode. There you can click on the project file and in the "Certificates, Identifiers & Profiles" tab create an ad-hoc provisioning profile (allow having up to 3 development apps installed at the same time). See more: [Create a development provisioning profile](https://developer.apple.com/help/account/manage-profiles/create-a-development-provisioning-profile/). Note that to create the provisioning profile, the ApplicationId (in csproj file) needs to be in a form of "com.companyName.appName" - this is then used as a Bundle Id.
+- .Net 8 is required to use Ab4d.SharpEngine on iOS (because function pointers do not work with .Net 7 and previous .Net versions on iOS).
 
+See detailed instructions below for more information.
 
+## Step by step instructions to run Ab4d.SharpEngine on macOS and iOS ##
+
+**Starting on macOS**:
+1. Download the latest version of dotnet - see https://dotnet.microsoft.com/en-us/download
+2. Download SharpEngine samples from this repo and extract them to any folder.
+3. Right click on a folder from the extracted files (for example, on Ab4d.SharpEngine.Samples.AvaloniaUI) and select "New Terminal at Folder"
+4. Run the following in terminal (if there is only one project in the folder, then you can skip the ´--project´ parameter; replace the project name with some other project name if needed):
+   ´dotnet run --project Ab4d.SharpEngine.Samples.AvaloniaUI.macos.csproj´
+5. This will start the sample application with SharpEngine on macOS.
+
+You can also easily start the projects from **Visual Studio Code** or **Rider** from JetBrains.
 
 
 ## Troubleshooting
@@ -280,7 +301,7 @@ Then you have multiple options to display or save log messages:
 // Write log to file
 Ab4d.SharpEngine.Utilities.Log.LogFileName = @"c:\SharpEngine.log";
   
-// Write log messages to the output window (for example Visual Studio Debug window) 
+// Write log messages to the output window (for example, Visual Studio Debug window) 
 // Ab4d.SharpEngine.Utilities.Log.IsLoggingToDebugOutput = true; 
   
 // Write to local StringBuilder
@@ -300,24 +321,17 @@ See https://www.ab4d.com/SharpEngine-history.aspx.
 
 ## Plans for later versions
 
-- Support for Uno platform
-- Supersampling
 - PhysicallyBasedRendering effect
-- Multi-threaded rendering and background resource creation
-- Rendering 3D lines with arrows (currently arrow is created by additional lines that define the arrow)
+- Multi-threaded rendering
+- Post-processing
+- Simplified creation of custom effects
 - Shadows
-- Python binding and samples
-
-
-### Distant Future
-
-- Add support for WebGPU (or WebGL) with Blazor WebAssembly so the engine can work in a web browser. 
-  This technology is currently not yet ready to provide good support for complex applications such as 3D rendering engine.
+- Add support for WebGL so that the SharpEngine can work with Blazor WebAssembly in a web browser (first alpha version is planned for the end of Q2 2025).
 
 
 ### Notice:
-Ab4d.SharpEngine.glTF library use source code from glTF2Loader with PR from ZingBallyhoo (https://github.com/KhronosGroup/glTF-CSharp-Loader/pull/51).
-glTF2Loader library is publushed under the following MIT license:
+Ab4d.SharpEngine.glTF library uses source code from glTF2Loader with PR from ZingBallyhoo (https://github.com/KhronosGroup/glTF-CSharp-Loader/pull/51).
+glTF2Loader library is published under the following MIT license:
 
 This license is for the C# reference loader, not the rest of the repository.
 

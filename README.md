@@ -241,7 +241,7 @@ Ab3d.PowerToys and Ab3d.DXEngine will still be actively developed, will get new 
 
 
 
-## Building for macOS and iOS
+## Quick building instructions for macOS and iOS
 
 The following projects can be started on **macOS**:
 - Ab4d.SharpEngine.Samples.AvaloniaUI
@@ -264,7 +264,7 @@ The following changes are required to use Ab4d.SharpEngine on macOS and iOS:
 
 See detailed instructions below for more information.
 
-## Step by step instructions to run Ab4d.SharpEngine on macOS and iOS ##
+## Step by step instructions to run the samples on macOS and iOS ##
 
 **Starting on macOS**:
 1. Download the latest version of dotnet - see https://dotnet.microsoft.com/en-us/download

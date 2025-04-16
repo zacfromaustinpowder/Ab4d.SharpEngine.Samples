@@ -6,8 +6,8 @@
     <TargetFramework>net9.0-ios</TargetFramework>
     <SupportedOSPlatformVersion>13.0</SupportedOSPlatformVersion>
     <Nullable>enable</Nullable>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+
+    <ApplicationId>com.ab4d.sharpengine.samples.avaloniaui</ApplicationId>
     <!--Generate CodesignKey: one way to do that is to open the project in Rider. Then right click on project and select open in XCode. There in the Sign tab generate the key.-->
     <!--<CodesignKey>Apple Development: ...</CodesignKey>-->
   </PropertyGroup>

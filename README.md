@@ -109,7 +109,7 @@ The following Visual Studio solutions are available:
   This sample can run only on Windows.
 
 - **Ab4d.SharpEngine.Samples.AvaloniaUI.CrossPlatform**\
-  This sample shows how to create an Avalonia app that can run on Windows, Android and iOS.
+  This sample shows how to create an Avalonia app that can run on Windows, Linux, macOS, Android and iOS.
   This sample uses Ab4d.SharpEngine.AvaloniaUI library that provides SharpEngineSceneView control.
   Because Vulkan is not natively supported on macOS and iOS, the MoltenVK library is required to translate the Vulkan calls to Molten API calls.
   See also "Building for macOS and iOS" section for more information on how to compile for iOS.

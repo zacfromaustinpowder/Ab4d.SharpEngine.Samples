@@ -243,12 +243,12 @@ Ab3d.PowerToys and Ab3d.DXEngine will still be actively developed, will get new 
 
 ## Building for macOS and iOS
 
-The following projects can be run on **macOS**:
+The following projects can be started on **macOS**:
 - Ab4d.SharpEngine.Samples.AvaloniaUI
 - Ab4d.SharpEngine.Samples.AvaloniaUI.CrossPlatform/Desktop
 - Ab4d.SharpEngine.Samples.Maui
 
-The following projects can be run on **iOS**:
+The following projects can be started on **iOS**:
 - Ab4d.SharpEngine.Samples.AvaloniaUI.CrossPlatform/iOS
 - Ab4d.SharpEngine.Samples.Maui
  
@@ -276,6 +276,59 @@ See detailed instructions below for more information.
 
 You can also easily start the projects from **Visual Studio Code** or **Rider** from JetBrains.
 
+
+**Starting on iOS**:
+1. Install XCode
+2. When XCode is started, install iOS platform support
+3. Connect your iPhone by USB cable and then open the following menu in XCode: Window - Devices and Simulators - allow the connection on iPhone and check that you see something similar:
+![XCode devices](doc/xcode-devices.png)
+4. In terminal open the Ab4d.SharpEngine.Samples.AvaloniaUI.CrossPlatform/iOS folder
+5. Run the following: `sudo dotnet workload install ios`
+6. To compile and run the app, use the following command (replace the device name with the Identifier from the XCode devices - on the screen that is shown on the screenshot above right click on the Identifier text and select Copy):
+   `dotnet build -t:Run -p:Configuration=Debug -r ios-arm64 /p:_DeviceName=xxxxxxxxxx-xxxxxxxxxxxxxxxxxxxx`
+7. At that point you should get the following compiler error:
+   `No valid iOS code signing keys found in keychain. You need to request a code signing certificate from https://developer.apple.com.`
+8. To add the certificate, make sure that you are signed into XCode. Go to XCode - Settings - check the Accounts tab. If no account is listed, click + to add your account. To create a new Apple developer account, visit https://developer.apple.com (you can also create a free account).
+9. If you are using Rider from JetBrains, then you can open the solution there. Then right click on the iOS project and select "Open with XCode". Then proceed to the step 17.
+10. When using CLI or Visual Studio Code, you can create the provisioning profile with the certificate by using the xcsync (this tool came with .Net 9; see https://learn.microsoft.com/en-us/dotnet/maui/macios/xcsync?view=net-maui-9.0&tabs=cli). To install and use xcsync do the following:
+11. Run the following (2025-05-15):
+    ```
+    dotnet tool install dotnet-xcsync -g --prerelease --add-source https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet9/nuget/v3/index.json
+    ```
+13. As instructed by the output, run the following:
+	   ```
+    cat << \EOF >> ~/.zprofile
+	   # Add .NET Core SDK tools
+	   export PATH="$PATH:/Users/abenedik/.dotnet/tools"
+	   EOF
+    ```
+14. Then run: `zsh -l`
+15. After that you should be able to run:
+	   `xcsync generate  --target-framework-moniker net9.0-ios --open`
+16. This generates the xcode project for the first time - for example the following output will be shown:
+	   `Generated Xcode project at 'obj/Debug/net9.0-ios/iossimulator-arm64/xcsync'`
+17. To update the xcode project later, run the following:
+	   `xcsync sync`
+18. The XCode will open with the specified project. On the left click on the project name. Then click on the "Signing & Capabilities":
+![XCode provisioning - no certificate](doc/xcode-provisioning1.png)
+19. In the Team dropdown select your provisioning team. After a few seconds the Signing Certificate should change to your certificate:
+![XCode provisioning - valid certificate](doc/xcode-provisioning2.png)
+20. If you are using Rider, then you can start the iOS project (before that select the iOS device from the dropdown on the to pline left to the project name).
+21. If you are using CLI or Visual Studio Code, do the following:
+22. Extract the CodesignKey by executing the following command in terminal:
+    `security find-identity -p codesigning -v`
+23. This prints the following (actual values are replaced by x and X):
+    `xxxxxxxxxxxxxxxxxxxxxx "Apple Development: axxxxxxk@xxxx.com (XXXXXXX)"`
+24. Open AvaloniaUI.CrossPlatform.iOS.csproj and add the following (copy the text from the terminal):
+    ```
+    <PropertyGroup>
+        <CodesignKey>Aple Development: axxxxxxk@xxxx.com (XXXXXXX)</CodesignKey>
+        <CodesignProvision>Automatic</CodesignProvision>
+    </PropertyGroup>
+    ```
+25. Now should be able to run the app by using the following command (replace the device name with your Identity):
+`dotnet build -t:Run -p:Configuration=Debug -r ios-arm64 /p:_DeviceName=xxxxxxxxxx-xxxxxxxxxxxxxxxxxxxx`
+26. When the app is deployed to iPhone, you will get a warning that the developer is not trusted. To allow the developer on the phone go to Settings > General > VPN & Device Management. In the Enterprise App section, tap the name of the app developer. Tap Trust "[developer name]" to continue. In iOS 18, iPadOS 18, and visionOS 2 and later, tap "Allow & Restart" to proceed with establishing trust. Then start the app again.
 
 ## Troubleshooting
 

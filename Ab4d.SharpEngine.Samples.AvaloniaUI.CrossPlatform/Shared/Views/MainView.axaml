@@ -30,10 +30,10 @@
 
       <Border HorizontalAlignment="Right" VerticalAlignment="Bottom" BorderBrush="Black" BorderThickness="2" Background="#AAFFFFFF" Margin="5">
           <StackPanel Orientation="Vertical" Margin="10 5 10 8">
-              <TextBlock Text="Actions:" FontWeight="Bold" Margin="0 5 0 2" />
+              <CheckBox Name="PinchRotateCheckBox" Content="Pinch rotate" IsChecked="False" Margin="0 2 0 5" IsCheckedChanged="PinchRotateCheckBox_OnIsCheckedChanged" />
 
-              <Button Name="AddNewButton" Content="Add new" Margin="0 2 0 2" Click="AddNewButton_OnClick" />
-              <Button Name="RemoveButton" Content="Remove" Margin="0 2 0 2" Click="RemoveButton_OnClick" />
+              <Button Name="AddNewButton" Content="Add new box" Margin="0 2 0 2" Click="AddNewButton_OnClick" />
+              <Button Name="RemoveButton" Content="Remove last object" Margin="0 2 0 2" Click="RemoveButton_OnClick" />
               <Button Name="ChangeMaterial1Button" Content="Change material 1" Margin="0 2 0 2" Click="ChangeMaterial1Button_OnClick" />
               <Button Name="ChangeMaterial2Button" Content="Change material 2" Margin="0 2 0 2" Click="ChangeMaterial2Button_OnClick" />
               <Button Name="ChangeBackgroundButton" Content="Change background" Margin="0 2 0 2" Click="ChangeBackgroundButton_OnClick" />

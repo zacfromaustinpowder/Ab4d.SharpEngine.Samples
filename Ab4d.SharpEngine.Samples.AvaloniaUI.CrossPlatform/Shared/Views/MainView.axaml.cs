@@ -56,6 +56,9 @@ namespace Ab4d.SharpEngine.Samples.AvaloniaUI.CrossPlatform.Views
             CreateTestScene();
             SetupMouseCameraController();
 
+            if (!OperatingSystem.IsAndroid() && !OperatingSystem.IsIOS())
+                PinchRotateCheckBox.IsVisible = false; // show pinch rotation only on Android and iOS (requires multitouch support)
+
             this.Unloaded += (sender, args) => MainSceneView.Dispose();
         }
 
@@ -86,9 +89,9 @@ namespace Ab4d.SharpEngine.Samples.AvaloniaUI.CrossPlatform.Views
                 RotateAroundPointerPosition = true,
 
                 IsPinchGestureEnabled         = true,
-                IsScrollGestureEnabled        = false,
-                RotateCameraWithScrollGesture = false, // When true, then dragging with one finger will rotate the camera (this is the default)
-                RotateWithPinchGesture        = true,  // When true, we can rotate the camera with two fingers (false by default)
+                IsScrollGestureEnabled        = true,
+                RotateCameraWithScrollGesture = true,  // When true, then dragging with one finger will rotate the camera (this is the default)
+                RotateWithPinchGesture        = false, // When true, we can rotate the camera with two fingers (false by default)
             };
         }
 
@@ -211,6 +214,18 @@ namespace Ab4d.SharpEngine.Samples.AvaloniaUI.CrossPlatform.Views
             {
                 var randomColor = new Color3(Random.Shared.NextSingle(), Random.Shared.NextSingle(), Random.Shared.NextSingle());
                 modelNode.Material = new StandardMaterial(randomColor);
+            }
+        }
+
+        private void PinchRotateCheckBox_OnIsCheckedChanged(object? sender, RoutedEventArgs e)
+        {
+            if (_cameraController != null)
+            {
+                bool pinchRotate = PinchRotateCheckBox.IsChecked ?? false;
+
+                _cameraController.RotateWithPinchGesture        = pinchRotate;
+                _cameraController.RotateCameraWithScrollGesture = !pinchRotate;
+                _cameraController.IsScrollGestureEnabled        = !pinchRotate;
             }
         }
     }

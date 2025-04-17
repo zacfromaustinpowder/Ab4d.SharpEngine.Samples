@@ -254,7 +254,27 @@ The following projects can be started on **iOS**:
  
 The following changes are required to use Ab4d.SharpEngine on macOS and iOS:
 
-- Add libMoltenVK.dylib from the Vulkan SDK to the project so that the library can be loaded at runtime. Note that there are different builds for iOS and for macOS / MacCatalyst.
+- Add libMoltenVK.dylib from the Vulkan SDK to the project so that the library can be loaded at runtime. Note that there are different builds for iOS and for macOS / MacCatalyst. The libMoltenVK.dylib is also available in the libs folder in this repository. For example, in the Ab4d.SharpEngine.Samples.AvaloniaUI.CrossPlatform solution the csproj file for the Desktop project has the following:
+  ```
+  <!-- MacOS and iOS require libMoltenVK.dylib to be able to use SharpEngine with Vulkan -->
+  <ItemGroup Condition="$([MSBuild]::IsOSPlatform('macos'))">
+    <Content Include="../../lib/MoltenVK/macos-arm64_x86_64/libMoltenVK.dylib" PublishFolderType="Assembly">
+      <Link>libMoltenVK.dylib</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>    
+  ```
+  The following is used for iOS project:
+  ```
+  <!-- iOS requires libMoltenVK.dylib to be able to use SharpEngine with Vulkan -->
+  <!-- When starting iOS simulator, use the dylib from ios-arm64_x86_64-simulator folder -->
+  <ItemGroup>
+    <Content Include="../../lib/MoltenVK/ios-arm64/libMoltenVK.dylib">
+      <Link>libMoltenVK.dylib</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>  
+  ```
 
 - For MAUI apps, the 3D scene that is rendered by Ab4d.SharpEngine is shown by using SKCanvasView. To use that control, add a reference to SkiaSharp.Views.Maui.Controls NuGet package. Then add ".UseSkiaSharp()" to the builder setup in the MauiProgram.cs file.
   

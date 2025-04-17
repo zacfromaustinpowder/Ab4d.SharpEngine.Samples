@@ -5,13 +5,13 @@
     <Grid x:Name="RootGrid">
         <Label x:Name="InfoLabel" HorizontalOptions="Center" VerticalOptions="Center" LineBreakMode="WordWrap" InputTransparent="True" Margin="10" IsVisible="False" />
 
+        <Label Text="This sample demonstrates only how to integrate Ab4d.SharpEngine into a MAUI app.&#x0a;See samples for Avalonia, Wpf, WinUI or WinForms for more features of the engine."
+               FontSize="15" BackgroundColor="#AAFFFFFF" HorizontalOptions="Start" VerticalOptions="End" LineBreakMode="WordWrap" InputTransparent="True" Margin="10" />
+
         <StackLayout Orientation="Vertical" HorizontalOptions="End" VerticalOptions="End" Margin="10">
             <Button x:Name="ChangeCameraButton" Text="Rotate camera" Clicked="OnChangeCameraButtonClicked" Margin="3"/>
             <Button x:Name="ChangeColorButton" Text="Change hash color" Clicked="OnChangeColorButtonClicked" Margin="3"/>
         </StackLayout>
-
-        <Label Text="This sample demonstrates only how to integrate Ab4d.SharpEngine into a MAUI app.&#x0a;See samples for Avalonia, Wpf, WinUI or WinForms for more features of the engine."
-               FontSize="15" BackgroundColor="#AAFFFFFF" HorizontalOptions="Start" VerticalOptions="End" LineBreakMode="WordWrap" InputTransparent="True" Margin="10" />
     </Grid>
 
 </ContentPage>

@@ -275,6 +275,7 @@ The following changes are required to use Ab4d.SharpEngine on macOS and iOS:
     </Content>
   </ItemGroup>  
   ```
+  Another option for macOS (not for iOS) is to install the Vulkan SDK to the computer (https://vulkan.lunarg.com/sdk/home#mac). In this case the Ab4d.SharpEngine should be able to find the libMoltenVK.dylib from the default location and you do not need to add it to the csproj. But in this case you will not be able to distribute the app to another computer that does not have Vulkan SDK installed.
 
 - For MAUI apps, the 3D scene that is rendered by Ab4d.SharpEngine is shown by using SKCanvasView. To use that control, add a reference to SkiaSharp.Views.Maui.Controls NuGet package. Then add ".UseSkiaSharp()" to the builder setup in the MauiProgram.cs file.
   

@@ -295,7 +295,7 @@ See detailed instructions below for more information.
    ´dotnet run --project Ab4d.SharpEngine.Samples.AvaloniaUI.macos.csproj´
 5. This will start the sample application with SharpEngine on macOS.
 
-You can also easily start the projects from **Visual Studio Code** or **Rider** from JetBrains.
+You can also easily start the project from **Visual Studio Code** or **Rider** from JetBrains.
 
 
 **Starting on iOS**:
@@ -334,9 +334,9 @@ You can also easily start the projects from **Visual Studio Code** or **Rider** 
 ![XCode provisioning - no certificate](doc/xcode-provisioning1.png)
 19. In the Team dropdown select your provisioning team. After a few seconds the Signing Certificate should change to your certificate:
 ![XCode provisioning - valid certificate](doc/xcode-provisioning2.png)
-20. If you are using Rider, then you can start the iOS project (before that select the iOS device from the dropdown on the to pline left to the project name).
+20. If you are using Rider, then you can start the iOS project (before that select the iOS device from the dropdown on the top line left to the project name).
 21. If you are using CLI or Visual Studio Code, do the following:
-22. Extract the CodesignKey by executing the following command in terminal:
+22. Extract the CodesignKey by executing the following command in the terminal:
     `security find-identity -p codesigning -v`
 23. This prints the following (actual values are replaced by x and X):
     `xxxxxxxxxxxxxxxxxxxxxx "Apple Development: axxxxxxk@xxxx.com (XXXXXXX)"`
@@ -347,9 +347,11 @@ You can also easily start the projects from **Visual Studio Code** or **Rider** 
         <CodesignProvision>Automatic</CodesignProvision>
     </PropertyGroup>
     ```
-25. Now should be able to run the app by using the following command (replace the device name with your Identity):
+25. Now you should be able to run the app by using the following command (replace the device name with your Identity):
 `dotnet build -t:Run -p:Configuration=Debug -r ios-arm64 /p:_DeviceName=xxxxxxxxxx-xxxxxxxxxxxxxxxxxxxx`
-26. When the app is deployed to iPhone, you will get a warning that the developer is not trusted. To allow the developer on the phone go to Settings > General > VPN & Device Management. In the Enterprise App section, tap the name of the app developer. Tap Trust "[developer name]" to continue. In iOS 18, iPadOS 18, and visionOS 2 and later, tap "Allow & Restart" to proceed with establishing trust. Then start the app again.
+26. When the app is deployed to iPhone, you will get a warning that the developer is not trusted. To allow the developer on the phone go to Settings > General > VPN & Device Management. In the Enterprise App section, tap the name of the app developer. Tap "Trust [developer name]" to continue. In iOS 18, iPadOS 18, and visionOS 2 and later, tap "Allow & Restart" to proceed with establishing trust. Then start the app again.
+
+To get **better error diagnostics when running dotnet build**, add the following parameters: `-v diag /p:WarningLevel=4 --tl:off`
 
 ## Troubleshooting
 
@@ -357,7 +359,9 @@ If you get build errors on Windows (for example 'project.assets.json' not found)
 
 The latest version of branches that start with "version/" may not compile with the latest published NuGet package and require the latest development version of the engine. If you need a feature from that branch, you can contact support to get the pre-release version.
 
-Some Intel graphics cards may not work with shared texture in WPF's SharpEngineSceneView control (writable bitmap is used instead, but this is slower).
+When using `dotnet build` command and you get an error message that you do not understand, it is possible to get additional error details by adding the following parameters: `-v diag /p:WarningLevel=4 --tl:off`.
+
+Some Intel graphics cards may not work with shared texture in WPF's SharpEngineSceneView control (WritableBitmap is used instead, but this is slower).
 
 To enable Vulkan validation, install the Vulkan SDK from: https://vulkan.lunarg.com/
 When Vulkan validation is installed and enabled by the SharpEngine (EnableStandardValidation is set to true when creating the engine),
@@ -385,7 +389,7 @@ Ab4d.SharpEngine.Utilities.Log.AddLogListener((logLevel, message) => _logStringB
 
 To get simplified log messages (without timestamp, thread ID and some other details) you can use:
 ```
-Ab4d.SharpEngine.Utilities.Log.WriteSimplifiedLogMessage = false;
+Ab4d.SharpEngine.Utilities.Log.WriteSimplifiedLogMessage = true;
 ```
 
 
